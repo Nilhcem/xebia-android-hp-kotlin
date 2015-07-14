@@ -1,0 +1,17 @@
+{
+    "offers": [
+        {
+            "type": "percentage",
+            "value": 8
+        },
+        {
+            "type": "minus",
+            "value": 6
+        },
+        {
+            "type": "slice",
+            "sliceValue": 100,
+            "value": 12
+        }
+    ]
+}
