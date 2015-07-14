@@ -11,21 +11,58 @@ android {
         targetSdkVersion 22
         versionCode 1
         versionName "1.0"
-    }
 
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
+        resConfig 'en'
     }
 
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+            shrinkResources false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    productFlavors {
+        // Should be the default flavor.
+        prod {
+            buildConfigField 'String', 'WS_ENDPOINT', '"http://henri-potier.xebia.fr/"'
+        }
+
+        // Mock server for instrumentation tests.
+        mock {
+            buildConfigField 'String', 'WS_ENDPOINT', '"http://' + getLocalIp() + ':8990/"'
+        }
+    }
+
+    lintOptions {
+        abortOnError false
     }
 }
 
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
     compile "com.android.support:appcompat-v7:22.2.0"
+}
+
+def getLocalIp() {
+    for (NetworkInterface iface : NetworkInterface.networkInterfaces) {
+        for (InetAddress addr : iface.inetAddresses) {
+            if (!addr.isLoopbackAddress()) {
+                def ip = addr.hostAddress
+                if (ip.startsWith('192.')) {
+                    return ip
+                }
+            }
+        }
+    }
 }
