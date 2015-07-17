@@ -1,16 +1,26 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
+buildscript {
+    repositories {
+        jcenter()
+    }
+
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-android-extensions:$kotlinVersion"
+    }
+}
+
 android {
     compileSdkVersion 22
-    buildToolsVersion "22.0.1"
+    buildToolsVersion '22.0.1'
 
     defaultConfig {
-        applicationId "com.nilhcem.henripotier"
+        applicationId 'com.nilhcem.henripotier'
         minSdkVersion 15
         targetSdkVersion 22
         versionCode 1
-        versionName "1.0"
+        versionName '1.0'
 
         resConfig 'en'
     }
@@ -50,8 +60,12 @@ android {
 }
 
 dependencies {
+    compile "com.android.support:appcompat-v7:$supportVersion"
+    compile "com.android.support:design:$supportVersion"
+    compile "com.android.support:recyclerview-v7:$supportVersion"
+
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
-    compile "com.android.support:appcompat-v7:22.2.0"
+    compile 'org.jetbrains.anko:anko:0.6.2-15s'
 }
 
 def getLocalIp() {
