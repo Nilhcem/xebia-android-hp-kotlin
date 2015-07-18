@@ -18,7 +18,7 @@ public class BooksListItem(context: Context) : LinearLayout(context) {
         bookTitle = find<TextView>(R.id.bookTitle)
     }
 
-    public fun bindData(item: Book) {
-        bookTitle.text = item.title
+    public fun bindData(book: Book) {
+        bookTitle.text = book.title
     }
 }
