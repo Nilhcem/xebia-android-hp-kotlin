@@ -24,6 +24,11 @@ public class BooksListActivity : AppCompatActivity(), AnkoLogger {
 
     override fun onResume() {
         super<AppCompatActivity>.onResume()
+        getBooksList()
+    }
+
+    fun getBooksList() {
+        info { "Get books list" }
 
         async {
             val books = ArrayList(RestApi.bookStoreApi.getBooks())
