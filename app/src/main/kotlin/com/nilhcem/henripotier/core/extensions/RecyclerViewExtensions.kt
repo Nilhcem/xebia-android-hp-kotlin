@@ -1,7 +1,9 @@
 package com.nilhcem.henripotier.core.extensions
 
 import android.support.v7.widget.RecyclerView
+import android.support.v7.widget.RecyclerView.ViewHolder
 import android.view.View
-import com.nilhcem.henripotier.core.ui.ViewHolder
+import android.view.ViewGroup
 
-fun <T : View> RecyclerView.Adapter<ViewHolder>.getView(holder: ViewHolder): T = (holder.itemView as T)
+fun RecyclerView.Adapter<ViewHolder>.createHolder(view: ViewGroup) = object : RecyclerView.ViewHolder(view) {}
+fun <T : View> RecyclerView.Adapter<ViewHolder>.getView(holder: ViewHolder) = holder.itemView as T
