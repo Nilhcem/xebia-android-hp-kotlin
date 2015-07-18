@@ -1,4 +1,4 @@
-package com.nilhcem.henripotier
+package com.nilhcem.henripotier.books.list
 
 import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
