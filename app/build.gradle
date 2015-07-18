@@ -60,12 +60,16 @@ android {
 }
 
 dependencies {
+    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
+    compile 'org.jetbrains.anko:anko:0.6.2-15s'
+
     compile "com.android.support:appcompat-v7:$supportVersion"
+    compile "com.android.support:cardview-v7:$supportVersion"
     compile "com.android.support:design:$supportVersion"
     compile "com.android.support:recyclerview-v7:$supportVersion"
 
-    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
-    compile 'org.jetbrains.anko:anko:0.6.2-15s'
+    compile 'com.squareup.retrofit:retrofit:1.9.0'
+    compile 'com.github.bumptech.glide:glide:3.6.1'
 }
 
 def getLocalIp() {
