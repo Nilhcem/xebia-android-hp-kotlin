@@ -2,13 +2,12 @@ package com.nilhcem.henripotier.ui.books.list
 
 import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
-import android.widget.TextView
 import com.nilhcem.henripotier.core.extensions.replaceAll
+import com.nilhcem.henripotier.core.ui.ViewHolder
 import com.nilhcem.henripotier.model.Book
-import org.jetbrains.anko.text
 import java.util.ArrayList
 
-public class BooksListAdapter() : RecyclerView.Adapter<BooksListAdapter.ViewHolder>() {
+public class BooksListAdapter() : RecyclerView.Adapter<ViewHolder>() {
 
     public var items: ArrayList<Book> = ArrayList()
         set(value) {
@@ -16,15 +15,11 @@ public class BooksListAdapter() : RecyclerView.Adapter<BooksListAdapter.ViewHold
             notifyDataSetChanged()
         }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(TextView(parent.getContext()))
-    }
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
+            ViewHolder(BooksListItem(parent.getContext()))
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.textView.text = items.get(position).toString()
-    }
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) =
+            (holder.itemView as BooksListItem).bindData(items.get(position))
 
     override fun getItemCount(): Int = items.size()
-
-    class ViewHolder(val textView: TextView) : RecyclerView.ViewHolder(textView)
 }
