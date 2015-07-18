@@ -2,12 +2,17 @@
 <resources>
     <color name="app_background">#ffeeeeee</color>
 
-    <color name="primary">#673AB7</color>
-    <color name="primary_dark">#512DA8</color>
-    <color name="primary_light">#D1C4E9</color>
+    <color name="primary">#3F51B5</color>
+    <color name="primary_dark">#303F9F</color>
+    <color name="primary_light">#C5CAE9</color>
     <color name="accent">#FF4081</color>
     <color name="primary_text">#212121</color>
     <color name="secondary_text">#727272</color>
     <color name="icons">#FFFFFF</color>
     <color name="divider">#B6B6B6</color>
+
+    <!-- Books list -->
+    <!-- @color/books_list_item_foreground = @color/primary + 20% alpha -->
+    <color name="books_list_item_foreground">#323F51B5</color>
+
 </resources>

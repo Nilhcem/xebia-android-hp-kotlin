@@ -2,7 +2,8 @@ package com.nilhcem.henripotier.ui.books.list
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.StaggeredGridLayoutManager
+import android.widget.Toast
 import com.nilhcem.henripotier.R
 import com.nilhcem.henripotier.network.RestApi
 import kotlinx.android.synthetic.books_list.booksList
@@ -13,12 +14,14 @@ import java.util.ArrayList
 
 public class BooksListActivity : AppCompatActivity(), AnkoLogger {
 
-    val adapter = BooksListAdapter()
+    private val adapter = BooksListAdapter { book ->
+        Toast.makeText(this, "Selected: ${book.title}", Toast.LENGTH_SHORT).show()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super<AppCompatActivity>.onCreate(savedInstanceState)
         setContentView(R.layout.books_list)
-        booksList.setLayoutManager(LinearLayoutManager(this))
+        booksList.setLayoutManager(StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL))
         booksList.setAdapter(adapter)
     }
 
@@ -27,7 +30,7 @@ public class BooksListActivity : AppCompatActivity(), AnkoLogger {
         getBooksList()
     }
 
-    fun getBooksList() {
+    private fun getBooksList() {
         info { "Get books list" }
 
         async {

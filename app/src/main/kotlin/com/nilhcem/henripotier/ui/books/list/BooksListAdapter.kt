@@ -9,7 +9,7 @@ import com.nilhcem.henripotier.core.extensions.replaceAll
 import com.nilhcem.henripotier.model.Book
 import java.util.ArrayList
 
-public class BooksListAdapter() : RecyclerView.Adapter<ViewHolder>() {
+public class BooksListAdapter(val clickListener: (book: Book) -> Unit) : RecyclerView.Adapter<ViewHolder>() {
 
     public var items: ArrayList<Book> = ArrayList()
         set(value) {
@@ -20,8 +20,15 @@ public class BooksListAdapter() : RecyclerView.Adapter<ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
             createHolder(BooksListItem(parent.getContext()))
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) =
-            getView<BooksListItem>(holder).bindData(items.get(position))
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val book = items.get(position)
+        val view = getView<BooksListItem>(holder)
+
+        view.bindData(book)
+        view.card.setOnClickListener() {
+            clickListener.invoke(book)
+        }
+    }
 
     override fun getItemCount(): Int = items.size()
 }
