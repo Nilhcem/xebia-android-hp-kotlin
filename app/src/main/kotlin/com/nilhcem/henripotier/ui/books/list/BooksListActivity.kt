@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.widget.Toast
 import com.nilhcem.henripotier.R
+import com.nilhcem.henripotier.model.Book
 import com.nilhcem.henripotier.network.RestApi
 import com.nilhcem.henripotier.ui.books.detail.BookDetailActivity
 import kotlinx.android.synthetic.books_list.booksList
@@ -16,6 +17,10 @@ import org.jetbrains.anko.uiThread
 import java.util.ArrayList
 
 public class BooksListActivity : AppCompatActivity(), AnkoLogger {
+
+    private companion object {
+        private val stateBooks = "books"
+    }
 
     private val adapter = BooksListAdapter { book ->
         startActivity<BookDetailActivity>(BookDetailActivity.extraBook to book)
@@ -30,14 +35,24 @@ public class BooksListActivity : AppCompatActivity(), AnkoLogger {
             Toast.makeText(this, "Cart!", Toast.LENGTH_SHORT).show()
         }
         booksList.setAdapter(adapter)
-        getBooksList()
+        getBooksList(savedInstanceState)
     }
 
-    private fun getBooksList() {
+    override fun onSaveInstanceState(outState: Bundle) {
+        super<AppCompatActivity>.onSaveInstanceState(outState)
+        outState.putSerializable(stateBooks, adapter.items)
+    }
+
+    private fun getBooksList(savedInstanceState: Bundle?) {
         info { "Get books list" }
 
         async {
-            val books = ArrayList(RestApi.bookStoreApi.getBooks())
+            val books = if (savedInstanceState == null) {
+                ArrayList(RestApi.bookStoreApi.getBooks())
+            } else {
+                savedInstanceState.getSerializable(stateBooks) as ArrayList<Book>
+            }
+
             uiThread {
                 adapter.items = books
             }
