@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Books list -->
+    <dimen name="books_list_image_width">170dp</dimen>
+    <dimen name="books_list_image_height">250dp</dimen>
+</resources>

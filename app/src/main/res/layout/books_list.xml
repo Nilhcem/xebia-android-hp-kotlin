@@ -4,8 +4,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.support.v7.widget.RecyclerView
+    <com.nilhcem.henripotier.core.ui.recyclerview.AutofitRecyclerView
         android:id="@+id/booksList"
         android:layout_width="match_parent"
+        android:columnWidth="@dimen/books_list_image_width"
+        android:padding="2dp"
+        android:clipToPadding="false"
         android:layout_height="match_parent"/>
 </FrameLayout>
