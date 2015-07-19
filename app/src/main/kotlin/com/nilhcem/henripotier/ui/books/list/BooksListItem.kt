@@ -40,7 +40,7 @@ public class BooksListItem(context: Context) : FrameLayout(context) {
 
         title.text = book.title
 
-        Glide.with(getContext()).load(book.cover).fitCenter().crossFade()
+        Glide.with(getContext()).load(book.cover).crossFade()
                 .listener(object : RequestListener<String, GlideDrawable> {
                     override fun onResourceReady(resource: GlideDrawable?, model: String?, target: Target<GlideDrawable>?, isFromMemoryCache: Boolean, isFirstResource: Boolean): Boolean = hideLoading()
                     override fun onException(e: Exception?, model: String?, target: Target<GlideDrawable>?, isFirstResource: Boolean): Boolean = hideLoading()
