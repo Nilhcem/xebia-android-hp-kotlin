@@ -2,10 +2,13 @@ package com.nilhcem.henripotier.ui.books.list
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.widget.Toast
 import com.nilhcem.henripotier.R
 import com.nilhcem.henripotier.network.RestApi
 import com.nilhcem.henripotier.ui.books.detail.BookDetailActivity
 import kotlinx.android.synthetic.books_list.booksList
+import kotlinx.android.synthetic.books_list.cartActionButton
+import kotlinx.android.synthetic.books_list.toolbar
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.async
 import org.jetbrains.anko.startActivity
@@ -21,6 +24,11 @@ public class BooksListActivity : AppCompatActivity(), AnkoLogger {
     override fun onCreate(savedInstanceState: Bundle?) {
         super<AppCompatActivity>.onCreate(savedInstanceState)
         setContentView(R.layout.books_list)
+        setSupportActionBar(toolbar)
+
+        cartActionButton.setOnClickListener {
+            Toast.makeText(this, "Cart!", Toast.LENGTH_SHORT).show()
+        }
         booksList.setAdapter(adapter)
         getBooksList()
     }
