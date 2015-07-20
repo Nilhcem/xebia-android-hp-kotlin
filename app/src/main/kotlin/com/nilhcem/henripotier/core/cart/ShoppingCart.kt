@@ -22,4 +22,12 @@ class ShoppingCart(val context: Context) {
     fun addToCart(isbn: String) = sharedPrefs.edit().putBoolean(isbn, true).commit()
 
     fun removeFromCart(isbn: String) = sharedPrefs.edit().remove(isbn).commit()
+
+    fun toggleFromCart(isbn: String) {
+        if (isInCart(isbn)) {
+            removeFromCart(isbn)
+        } else {
+            addToCart(isbn)
+        }
+    }
 }

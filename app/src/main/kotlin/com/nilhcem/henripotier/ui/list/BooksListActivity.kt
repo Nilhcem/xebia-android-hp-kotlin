@@ -24,7 +24,7 @@ class BooksListActivity : AppCompatActivity(), AnkoLogger {
     }
 
     private val adapter = BooksListAdapter(HPApp.cart!!) { book, pos ->
-        Toast.makeText(this, "Clicked: #$pos ${book}", Toast.LENGTH_SHORT).show()
+//        Toast.makeText(this, "Clicked: #$pos ${book}", Toast.LENGTH_SHORT).show()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,6 +36,7 @@ class BooksListActivity : AppCompatActivity(), AnkoLogger {
         cartActionButton.setOnClickListener { startActivity<CartActivity>() }
 
         booksList.setAdapter(adapter)
+        booksList.setItemAnimator(null)
         getBooksList(savedInstanceState)
     }
 

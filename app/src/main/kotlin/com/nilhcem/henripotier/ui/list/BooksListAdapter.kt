@@ -26,15 +26,12 @@ class BooksListAdapter(val cart: ShoppingCart, val clickListener: (book: Book, p
         val view = getView<BooksListItem>(holder)
 
         view.bindData(book)
+        view.setAlpha(if (cart.isInCart(book.isbn)) 0.5f else 1.0f)
+
         view.card.setOnClickListener() {
-            if (cart.isInCart(book.isbn)) {
-                cart.removeFromCart(book.isbn)
-                view.setAlpha(1.0f)
-            } else {
-                cart.addToCart(book.isbn)
-                view.setAlpha(0.5f)
-            }
+            cart.toggleFromCart(book.isbn)
             clickListener.invoke(book, position)
+            notifyItemChanged(position)
         }
     }
 
