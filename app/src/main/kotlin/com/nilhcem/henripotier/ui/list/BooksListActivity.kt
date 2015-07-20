@@ -3,6 +3,7 @@ package com.nilhcem.henripotier.ui.list
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.widget.Toast
+import com.nilhcem.henripotier.HPApp
 import com.nilhcem.henripotier.R
 import com.nilhcem.henripotier.model.Book
 import com.nilhcem.henripotier.network.RestApi
@@ -22,7 +23,7 @@ class BooksListActivity : AppCompatActivity(), AnkoLogger {
         private val stateBooks = "books"
     }
 
-    private val adapter = BooksListAdapter { book, pos ->
+    private val adapter = BooksListAdapter(HPApp.cart!!) { book, pos ->
         Toast.makeText(this, "Clicked: #$pos ${book}", Toast.LENGTH_SHORT).show()
     }
 
