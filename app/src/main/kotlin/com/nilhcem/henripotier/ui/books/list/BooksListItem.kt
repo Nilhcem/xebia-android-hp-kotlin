@@ -18,9 +18,9 @@ import org.jetbrains.anko.find
 import org.jetbrains.anko.text
 import org.jetbrains.anko.visibility
 
-public class BooksListItem(context: Context) : FrameLayout(context) {
+class BooksListItem(context: Context) : FrameLayout(context) {
 
-    public val card: CardView
+    val card: CardView
     private val title: TextView
     private val cover: ImageView
     private val loading: ProgressBar
@@ -33,7 +33,7 @@ public class BooksListItem(context: Context) : FrameLayout(context) {
         loading = find<ProgressBar>(R.id.book_loading)
     }
 
-    public fun bindData(book: Book) {
+    fun bindData(book: Book) {
         cover.setImageResource(0)
         cover.visibility = View.VISIBLE
         loading.visibility = View.VISIBLE

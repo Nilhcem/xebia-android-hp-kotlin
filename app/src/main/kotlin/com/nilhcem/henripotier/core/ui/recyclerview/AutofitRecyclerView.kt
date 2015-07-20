@@ -5,7 +5,7 @@ import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.AttributeSet
 
-public class AutofitRecyclerView : RecyclerView {
+class AutofitRecyclerView : RecyclerView {
 
     private var manager: GridLayoutManager
     private var columnWidth = -1
