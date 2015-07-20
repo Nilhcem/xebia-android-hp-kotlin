@@ -2,6 +2,7 @@ package com.nilhcem.henripotier.ui.books.list
 
 import android.content.Context
 import android.support.v7.widget.CardView
+import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.FrameLayout
@@ -13,6 +14,7 @@ import com.bumptech.glide.load.resource.drawable.GlideDrawable
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.nilhcem.henripotier.R
+import com.nilhcem.henripotier.core.extensions.format
 import com.nilhcem.henripotier.model.Book
 import org.jetbrains.anko.find
 import org.jetbrains.anko.text
@@ -38,8 +40,7 @@ class BooksListItem(context: Context) : FrameLayout(context) {
         cover.visibility = View.VISIBLE
         loading.visibility = View.VISIBLE
 
-        title.text = book.title
-
+        title.text = Html.fromHtml("${book.title}<br><b>${book.price.format(2)}€</b>")
         Glide.with(getContext()).load(book.cover).crossFade()
                 .listener(object : RequestListener<String, GlideDrawable> {
                     override fun onResourceReady(resource: GlideDrawable?, model: String?, target: Target<GlideDrawable>?, isFromMemoryCache: Boolean, isFirstResource: Boolean): Boolean = hideLoading()
