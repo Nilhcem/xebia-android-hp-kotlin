@@ -13,7 +13,7 @@
         android:theme="@style/AppTheme">
 
         <activity
-            android:name=".ui.books.list.BooksListActivity">
+            android:name=".ui.list.BooksListActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
@@ -22,11 +22,11 @@
 
         <activity
             android:name=".ui.cart.CartActivity"
-            android:parentActivityName=".ui.books.list.BooksListActivity"
+            android:parentActivityName=".ui.list.BooksListActivity"
             android:theme="@style/AppTheme.TranslucentStatusBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.books.list.BooksListActivity"/>
+                android:value=".ui.list.BooksListActivity"/>
         </activity>
     </application>
 </manifest>

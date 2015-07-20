@@ -1,4 +1,4 @@
-package com.nilhcem.henripotier.ui.books.list
+package com.nilhcem.henripotier.ui.list
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
