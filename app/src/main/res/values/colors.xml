@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="app_background">#ffeeeeee</color>
+    <color name="translucent_statusbar">#30000000</color>
 
     <color name="primary">#3F51B5</color>
     <color name="primary_dark">#303F9F</color>
@@ -15,4 +16,6 @@
     <!-- @color/books_list_item_foreground = @color/primary + 20% alpha -->
     <color name="books_list_item_foreground">#323F51B5</color>
 
+    <!-- Shopping cart-->
+    <color name="shopping_cart_statusbar">#80000000</color>
 </resources>

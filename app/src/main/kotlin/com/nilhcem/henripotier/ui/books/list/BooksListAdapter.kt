@@ -9,9 +9,9 @@ import com.nilhcem.henripotier.core.extensions.replaceAll
 import com.nilhcem.henripotier.model.Book
 import java.util.ArrayList
 
-public class BooksListAdapter(val clickListener: (book: Book) -> Unit) : RecyclerView.Adapter<ViewHolder>() {
+class BooksListAdapter(val clickListener: (book: Book, position: Int) -> Unit) : RecyclerView.Adapter<ViewHolder>() {
 
-    public var items: ArrayList<Book> = ArrayList()
+    var items: ArrayList<Book> = ArrayList()
         set(value) {
             $items.replaceAll(value)
             notifyDataSetChanged()
@@ -26,7 +26,7 @@ public class BooksListAdapter(val clickListener: (book: Book) -> Unit) : Recycle
 
         view.bindData(book)
         view.card.setOnClickListener() {
-            clickListener.invoke(book)
+            clickListener.invoke(book, position)
         }
     }
 

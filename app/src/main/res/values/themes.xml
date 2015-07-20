@@ -12,4 +12,8 @@
         <item name="android:divider">@color/divider</item>
         <item name="android:windowBackground">@color/app_background</item>
     </style>
+
+    <style name="AppTheme.TranslucentStatusBar">
+        <item name="android:statusBarColor">@color/translucent_statusbar</item>
+    </style>
 </resources>

@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Henri Potier</string>
+    <string name="listing_title">Add to cart</string>
+    <string name="cart_title">Shopping cart</string>
 </resources>
