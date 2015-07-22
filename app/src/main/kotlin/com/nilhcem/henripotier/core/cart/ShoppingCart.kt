@@ -15,7 +15,9 @@ class ShoppingCart(val context: Context) {
         sharedPrefs = context.getSharedPreferences(prefsName, Context.MODE_PRIVATE)
     }
 
-    fun getAllIbnsInCart() = sharedPrefs.getAll().map { it.getValue() as String }
+    fun getAllIbnsInCart() = sharedPrefs.getAll().filter { it.getValue() == true }.map { it.getKey() }
+
+    fun getNbItemsInCart() = getAllIbnsInCart().count()
 
     fun isInCart(isbn: String) = sharedPrefs.contains(isbn)
 

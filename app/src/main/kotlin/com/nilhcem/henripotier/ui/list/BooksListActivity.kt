@@ -25,15 +25,16 @@ class BooksListActivity : AppCompatActivity(), AnkoLogger {
         private val stateBooks = "books"
     }
 
-    private val adapter = BooksListAdapter(HPApp.cart!!) { book, pos ->
-        //        Toast.makeText(this, "Clicked: #$pos ${book}", Toast.LENGTH_SHORT).show()
+    private val cart = HPApp.cart!!
+    private val adapter = BooksListAdapter(cart) {
+        updateTitle()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super<AppCompatActivity>.onCreate(savedInstanceState)
         setContentView(R.layout.books_list)
         setSupportActionBar(toolbar)
-        getSupportActionBar().setTitle(R.string.listing_title)
+        updateTitle()
 
         cartActionButton.setOnClickListener { startActivity<CartActivity>() }
 
@@ -45,6 +46,17 @@ class BooksListActivity : AppCompatActivity(), AnkoLogger {
     override fun onSaveInstanceState(outState: Bundle) {
         super<AppCompatActivity>.onSaveInstanceState(outState)
         outState.putSerializable(stateBooks, adapter.items)
+    }
+
+    private fun updateTitle() {
+        val actionBar = getSupportActionBar()
+        val nbSelectedItems = cart.getNbItemsInCart()
+
+        actionBar.setTitle(if (nbSelectedItems == 0) {
+            getString(R.string.listing_title)
+        } else {
+            getString(R.string.listing_title_added, nbSelectedItems)
+        })
     }
 
     private fun getBooksList(savedInstanceState: Bundle?) {

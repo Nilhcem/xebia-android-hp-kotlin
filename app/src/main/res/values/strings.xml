@@ -4,5 +4,6 @@
     <string name="network_issue">No Internet connection</string>
     <string name="try_again">Try again</string>
     <string name="listing_title">Add to cart</string>
+    <string name="listing_title_added">Added to cart (%d)</string>
     <string name="cart_title">Shopping cart</string>
 </resources>

@@ -10,7 +10,7 @@ import com.nilhcem.henripotier.core.extensions.replaceAll
 import com.nilhcem.henripotier.model.Book
 import java.util.ArrayList
 
-class BooksListAdapter(val cart: ShoppingCart, val clickListener: (book: Book, position: Int) -> Unit) : RecyclerView.Adapter<ViewHolder>() {
+class BooksListAdapter(val cart: ShoppingCart, val clickListener: () -> Unit) : RecyclerView.Adapter<ViewHolder>() {
 
     var items: ArrayList<Book> = ArrayList()
         set(value) {
@@ -30,7 +30,7 @@ class BooksListAdapter(val cart: ShoppingCart, val clickListener: (book: Book, p
 
         view.card.setOnClickListener() {
             cart.toggleFromCart(book.isbn)
-            clickListener.invoke(book, position)
+            clickListener.invoke()
             notifyItemChanged(position)
         }
     }
