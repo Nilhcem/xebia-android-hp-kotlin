@@ -2,19 +2,21 @@ package com.nilhcem.henripotier.ui.list
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.widget.Toast
 import com.nilhcem.henripotier.HPApp
 import com.nilhcem.henripotier.R
+import com.nilhcem.henripotier.core.extensions.noNetworkSnackBar
 import com.nilhcem.henripotier.model.Book
 import com.nilhcem.henripotier.network.RestApi
 import com.nilhcem.henripotier.ui.cart.CartActivity
 import kotlinx.android.synthetic.books_list.booksList
 import kotlinx.android.synthetic.books_list.cartActionButton
+import kotlinx.android.synthetic.books_list.parentLayout
 import kotlinx.android.synthetic.books_list.toolbar
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.async
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.uiThread
+import retrofit.RetrofitError
 import java.util.ArrayList
 
 class BooksListActivity : AppCompatActivity(), AnkoLogger {
@@ -24,7 +26,7 @@ class BooksListActivity : AppCompatActivity(), AnkoLogger {
     }
 
     private val adapter = BooksListAdapter(HPApp.cart!!) { book, pos ->
-//        Toast.makeText(this, "Clicked: #$pos ${book}", Toast.LENGTH_SHORT).show()
+        //        Toast.makeText(this, "Clicked: #$pos ${book}", Toast.LENGTH_SHORT).show()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,13 +52,21 @@ class BooksListActivity : AppCompatActivity(), AnkoLogger {
 
         async {
             val books = if (savedInstanceState == null) {
-                ArrayList(RestApi.bookStoreApi.getBooks())
+                try {
+                    ArrayList(RestApi.bookStoreApi.getBooks())
+                } catch (e: RetrofitError) {
+                    ArrayList<Book>()
+                }
             } else {
                 savedInstanceState.getSerializable(stateBooks) as ArrayList<Book>
             }
 
-            uiThread {
-                adapter.items = books
+            if (books.isEmpty()) {
+                noNetworkSnackBar(parentLayout) { getBooksList(null) }
+            } else {
+                uiThread {
+                    adapter.items = books
+                }
             }
         }
     }
