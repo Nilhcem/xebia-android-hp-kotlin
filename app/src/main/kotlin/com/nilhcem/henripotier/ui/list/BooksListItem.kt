@@ -14,7 +14,7 @@ import com.bumptech.glide.load.resource.drawable.GlideDrawable
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.nilhcem.henripotier.R
-import com.nilhcem.henripotier.core.extensions.format
+import com.nilhcem.henripotier.core.extensions.euroPrice
 import com.nilhcem.henripotier.model.Book
 import org.jetbrains.anko.find
 import org.jetbrains.anko.text
@@ -29,10 +29,10 @@ class BooksListItem(context: Context) : FrameLayout(context) {
 
     init {
         LayoutInflater.from(context).inflate(R.layout.books_list_item, this, true)
-        card = find<CardView>(R.id.book_card)
-        title = find<TextView>(R.id.book_title)
-        cover = find<ImageView>(R.id.book_cover)
-        loading = find<ProgressBar>(R.id.book_loading)
+        card = find(R.id.book_card)
+        title = find(R.id.book_title)
+        cover = find(R.id.book_cover)
+        loading = find(R.id.book_loading)
     }
 
     fun bindData(book: Book) {
@@ -40,7 +40,7 @@ class BooksListItem(context: Context) : FrameLayout(context) {
         cover.visibility = View.VISIBLE
         loading.visibility = View.VISIBLE
 
-        title.text = Html.fromHtml("${book.title}<br><b>${book.price.format(2)}€</b>")
+        title.text = Html.fromHtml("${book.title}<br><b>${book.price.euroPrice()}</b>")
         Glide.with(getContext()).load(book.cover).crossFade()
                 .listener(object : RequestListener<String, GlideDrawable> {
                     override fun onResourceReady(resource: GlideDrawable?, model: String?, target: Target<GlideDrawable>?, isFromMemoryCache: Boolean, isFirstResource: Boolean): Boolean = hideLoading()

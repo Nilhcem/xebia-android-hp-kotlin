@@ -1,9 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Common -->
     <string name="app_name">Henri Potier</string>
     <string name="network_issue">No Internet connection</string>
     <string name="try_again">Try again</string>
+
+    <!-- Books List -->
     <string name="listing_title">Add to cart</string>
     <string name="listing_title_added">Added to cart (%d)</string>
+
+    <!-- Cart -->
     <string name="cart_title">Shopping cart</string>
+    <!--<string name="cart_price_format">%.2f €</string>-->
+    <string name="cart_subtotal">Total</string>
+    <string name="cart_discount">Discount (%s)</string>
+    <string name="cart_total">Total to pay</string>
 </resources>

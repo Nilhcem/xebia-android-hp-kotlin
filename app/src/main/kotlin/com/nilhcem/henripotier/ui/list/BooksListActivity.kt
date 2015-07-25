@@ -36,7 +36,7 @@ class BooksListActivity : AppCompatActivity(), AnkoLogger {
         setSupportActionBar(toolbar)
         updateTitle()
 
-        cartActionButton.setOnClickListener { startActivity<CartActivity>() }
+        cartActionButton.setOnClickListener { startActivity<CartActivity>(CartActivity.extraBooks to adapter.items) }
 
         booksList.setAdapter(adapter)
         booksList.setItemAnimator(null)
