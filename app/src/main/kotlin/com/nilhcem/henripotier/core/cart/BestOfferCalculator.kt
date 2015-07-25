@@ -6,8 +6,7 @@ import com.nilhcem.henripotier.model.Type
 object BestOfferCalculator {
 
     fun getBestOffer(amount: Float, offers: List<CommercialOffer>): CommercialOffer? {
-        val map0 = offers.toMap { computeDiscount(amount, it) }
-        val map = map0.toSortedMap(compareBy<Float> { it })
+        val map = offers.toMap { computeDiscount(amount, it) }.toSortedMap(compareBy<Float> { it })
         return if (map.isEmpty()) null else map[map.lastKey()]
     }
 
