@@ -11,8 +11,10 @@
 
     <!-- Cart -->
     <string name="cart_title">Shopping cart</string>
-    <!--<string name="cart_price_format">%.2f €</string>-->
     <string name="cart_subtotal">Total</string>
     <string name="cart_discount">Discount (%s)</string>
     <string name="cart_total">Total to pay</string>
+    <string name="cart_thanks_title">Thanks for your purchase</string>
+    <string name="cart_thanks_content">Enjoy your reading!</string>
+    <string name="cart_thanks_close">Close</string>
 </resources>

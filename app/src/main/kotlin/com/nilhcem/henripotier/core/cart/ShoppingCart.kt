@@ -25,6 +25,8 @@ class ShoppingCart(val context: Context) {
 
     fun removeFromCart(isbn: String) = sharedPrefs.edit().remove(isbn).commit()
 
+    fun clear() = sharedPrefs.edit().clear().commit()
+
     fun toggleFromCart(isbn: String) {
         if (isInCart(isbn)) {
             removeFromCart(isbn)

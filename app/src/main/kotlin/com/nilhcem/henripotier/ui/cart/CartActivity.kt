@@ -12,13 +12,12 @@ import com.nilhcem.henripotier.core.extensions.noNetworkSnackBar
 import com.nilhcem.henripotier.model.Book
 import com.nilhcem.henripotier.model.CommercialOffer
 import com.nilhcem.henripotier.network.RestApi
+import com.nilhcem.henripotier.ui.list.BooksListActivity
 import kotlinx.android.synthetic.cart.cartList
 import kotlinx.android.synthetic.cart.collapsing_toolbar
+import kotlinx.android.synthetic.cart.fab
 import kotlinx.android.synthetic.cart.parentLayout
-import org.jetbrains.anko.AnkoLogger
-import org.jetbrains.anko.async
-import org.jetbrains.anko.find
-import org.jetbrains.anko.uiThread
+import org.jetbrains.anko.*
 import retrofit.RetrofitError
 import java.util.ArrayList
 import java.util.Locale
@@ -35,10 +34,23 @@ class CartActivity : AppCompatActivity(), AnkoLogger {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super<AppCompatActivity>.onCreate(savedInstanceState)
+        if (cart.getNbItemsInCart() == 0) {
+            finish();
+        }
+
         setContentView(R.layout.cart)
         setSupportActionBar(find<Toolbar>(R.id.toolbar));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         collapsing_toolbar.setTitle(getString(R.string.cart_title))
+
+        fab.setOnClickListener {
+            alert(R.string.cart_thanks_content, R.string.cart_thanks_title) {
+                positiveButton(R.string.cart_thanks_close) {
+                    cart.clear()
+                    startActivity(intentFor<BooksListActivity>().clearTop())
+                }
+            }.show()
+        }
 
         cartList.setLayoutManager(LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false))
         cartList.setAdapter(adapter)
