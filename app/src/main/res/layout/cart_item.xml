@@ -1,35 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
     android:padding="10dp">
-
-    <!-- Title -->
-    <TextView
-        android:id="@+id/cart_item_title"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:fontFamily="sans-serif-light"
-        android:gravity="center_vertical"
-        android:textColor="@color/primary_text"
-        android:textSize="18sp"
-        tools:text="Henri Potier et la Chambre des secrets"/>
 
     <!-- Price -->
     <TextView
         android:id="@+id/cart_item_price"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
         android:layout_marginLeft="10dp"
         android:layout_marginStart="10dp"
         android:fontFamily="sans-serif"
-        android:gravity="center_vertical"
         android:textColor="@color/primary_dark"
         android:textSize="20sp"
         android:textStyle="bold"
         tools:text="30,00 €"/>
-</LinearLayout>
+
+    <!-- Title -->
+    <TextView
+        android:id="@+id/cart_item_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@id/cart_item_price"
+        android:layout_toStartOf="@id/cart_item_price"
+        android:fontFamily="sans-serif-light"
+        android:textColor="@color/primary_text"
+        android:textSize="18sp"
+        tools:text="Henri Potier et la Chambre des secrets"/>
+</RelativeLayout>
