@@ -74,12 +74,12 @@ class CartActivity : AppCompatActivity(), AnkoLogger {
         }
     }
 
-    private fun getCartIsbns() = cart.getAllIbnsInCart().join(separator = ",")
+    private fun getCartIsbns() = cart.getAllIsbnsInCart().join(separator = ",")
 
     private fun createDataEntries(offers: List<CommercialOffer>): ArrayList<CartItemData> {
         val entries = ArrayList<CartItemData>()
 
-        val isbnsInCart = cart.getAllIbnsInCart()
+        val isbnsInCart = cart.getAllIsbnsInCart()
         val booksInCart = (getIntent().getSerializableExtra(extraBooks) as ArrayList<Book>).filter { isbnsInCart.contains(it.isbn) }
 
         entries.addAll(booksInCart.map { CartItemData(it.title, it.price.euroPrice()) })
