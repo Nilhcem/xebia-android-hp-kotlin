@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.nilhcem.henripotier.R
+import com.nilhcem.henripotier.core.extensions.toBold
 import org.jetbrains.anko.find
 import org.jetbrains.anko.text
 
@@ -19,8 +20,8 @@ class CartItem(context: Context) : LinearLayout(context) {
         price = find(R.id.cart_item_price)
     }
 
-    fun bindData(data: CartItemData) {
-        title.text = data.title
+    fun bindData(data: CartItemData, titleInBold: Boolean) {
+        title.text = if (titleInBold) data.title.toBold() else data.title
         price.text = data.price
     }
 }

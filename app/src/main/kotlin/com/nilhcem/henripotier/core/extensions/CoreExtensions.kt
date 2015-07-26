@@ -1,4 +1,7 @@
 package com.nilhcem.henripotier.core.extensions
 
+import android.text.Html
+
 fun Float.format(digits: Int) = java.lang.String.format("%.${digits}f", this)
 fun Float.euroPrice() = "${format(2)} €"
+fun String.toBold() = Html.fromHtml("<b>${this}</b>")
