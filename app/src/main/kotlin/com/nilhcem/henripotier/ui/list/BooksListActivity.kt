@@ -1,9 +1,14 @@
 package com.nilhcem.henripotier.ui.list
 
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
+import android.animation.ObjectAnimator
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.view.View
 import com.nilhcem.henripotier.HPApp
 import com.nilhcem.henripotier.R
+import com.nilhcem.henripotier.core.extensions.isVisible
 import com.nilhcem.henripotier.core.extensions.noNetworkSnackBar
 import com.nilhcem.henripotier.model.Book
 import com.nilhcem.henripotier.network.RestApi
@@ -12,10 +17,7 @@ import kotlinx.android.synthetic.books_list.booksList
 import kotlinx.android.synthetic.books_list.cartActionButton
 import kotlinx.android.synthetic.books_list.parentLayout
 import kotlinx.android.synthetic.books_list.toolbar
-import org.jetbrains.anko.AnkoLogger
-import org.jetbrains.anko.async
-import org.jetbrains.anko.startActivity
-import org.jetbrains.anko.uiThread
+import org.jetbrains.anko.*
 import retrofit.RetrofitError
 import java.util.ArrayList
 
@@ -27,6 +29,7 @@ class BooksListActivity : AppCompatActivity(), AnkoLogger {
 
     private val cart = HPApp.cart!!
     private val adapter = BooksListAdapter(cart) {
+        showHideCart()
         updateTitle()
     }
 
@@ -77,9 +80,33 @@ class BooksListActivity : AppCompatActivity(), AnkoLogger {
                 noNetworkSnackBar(parentLayout) { getBooksList(null) }
             } else {
                 uiThread {
+                    cartActionButton.visibility = if (cart.getNbItemsInCart() == 0) View.INVISIBLE else View.VISIBLE
                     adapter.items = books
                 }
             }
+        }
+    }
+
+    private fun showHideCart() {
+        val itemsInCart = cart.getNbItemsInCart()
+        if (itemsInCart == 0 && cartActionButton.isVisible()) {
+            val animator: ObjectAnimator = ObjectAnimator.ofFloat(cartActionButton, View.ALPHA, 1f, 0f)
+            animator.setDuration(300L)
+            animator.addListener(object : AnimatorListenerAdapter() {
+                override fun onAnimationEnd(animation: Animator) {
+                    cartActionButton.visibility = View.INVISIBLE
+                }
+            })
+            animator.start()
+        } else if (itemsInCart != 0 && !cartActionButton.isVisible()) {
+            val animator: ObjectAnimator = ObjectAnimator.ofFloat(cartActionButton, View.ALPHA, 0f, 1f)
+            animator.setDuration(300L)
+            animator.addListener(object : AnimatorListenerAdapter() {
+                override fun onAnimationStart(animation: Animator?) {
+                    cartActionButton.visibility = View.VISIBLE
+                }
+            })
+            animator.start()
         }
     }
 }
