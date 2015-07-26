@@ -1,0 +1,12 @@
+apply plugin: 'jacoco'
+
+dependencies {
+    testCompile 'junit:junit:4.12'
+    testCompile 'com.squareup.assertj:assertj-android:1.0.1'
+
+    testCompile('org.robolectric:robolectric:3.0') {
+        exclude module: 'support-v4'
+        exclude module: 'commons-logging'
+        exclude module: 'httpclient'
+    }
+}
