@@ -27,7 +27,7 @@ class BooksListActivity : AppCompatActivity(), AnkoLogger {
         private val stateBooks = "books"
     }
 
-    private val cart = HPApp.cart!!
+    private val cart = HPApp.cart
     private val adapter = BooksListAdapter(cart) {
         showHideCart()
         updateTitle()

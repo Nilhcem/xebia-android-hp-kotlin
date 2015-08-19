@@ -29,7 +29,7 @@ class CartActivity : AppCompatActivity(), AnkoLogger {
         private val stateOffers = "offers"
     }
 
-    private val cart = HPApp.cart!!
+    private val cart = HPApp.cart
     private val adapter = CartAdapter(cart)
 
     override fun onCreate(savedInstanceState: Bundle?) {
