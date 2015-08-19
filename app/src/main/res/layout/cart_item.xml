@@ -8,7 +8,7 @@
 
     <!-- Price -->
     <TextView
-        android:id="@+id/cart_item_price"
+        android:id="@+id/priceView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
@@ -24,12 +24,12 @@
 
     <!-- Title -->
     <TextView
-        android:id="@+id/cart_item_title"
+        android:id="@+id/titleView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_toLeftOf="@id/cart_item_price"
-        android:layout_toStartOf="@id/cart_item_price"
+        android:layout_toLeftOf="@id/priceView"
+        android:layout_toStartOf="@id/priceView"
         android:fontFamily="sans-serif-light"
         android:textColor="@color/primary_text"
         android:textSize="18sp"
