@@ -13,11 +13,10 @@ import com.nilhcem.henripotier.model.Book
 import com.nilhcem.henripotier.model.CommercialOffer
 import com.nilhcem.henripotier.network.RestApi
 import com.nilhcem.henripotier.ui.list.BooksListActivity
-import kotlinx.android.synthetic.cart.cartList
-import kotlinx.android.synthetic.cart.collapsing_toolbar
-import kotlinx.android.synthetic.cart.fab
-import kotlinx.android.synthetic.cart.parentLayout
+import kotlinx.android.synthetic.main.cart.*
+import kotlinx.coroutines.experimental.async
 import org.jetbrains.anko.*
+import org.jetbrains.anko.custom.async
 import retrofit.RetrofitError
 import java.util.ArrayList
 import java.util.Locale
@@ -40,7 +39,7 @@ class CartActivity : AppCompatActivity(), AnkoLogger {
 
         setContentView(R.layout.cart)
         setSupportActionBar(find<Toolbar>(R.id.toolbar));
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar()?.setDisplayHomeAsUpEnabled(true);
         collapsing_toolbar.setTitle(getString(R.string.cart_title))
 
         fab.setOnClickListener {
@@ -86,7 +85,7 @@ class CartActivity : AppCompatActivity(), AnkoLogger {
         }
     }
 
-    private fun getCartIsbns() = cart.getAllIsbnsInCart().join(separator = ",")
+    private fun getCartIsbns() = cart.getAllIsbnsInCart().joinToString(separator = ",")
 
     private fun createDataEntries(offers: List<CommercialOffer>): ArrayList<CartItemData> {
         val entries = ArrayList<CartItemData>()
@@ -104,7 +103,7 @@ class CartActivity : AppCompatActivity(), AnkoLogger {
         } else {
             val discount = BestOfferCalculator.computeDiscount(totalAmount, bestOffer)
             entries.add(CartItemData(getString(R.string.cart_subtotal), totalAmount.euroPrice()))
-            entries.add(CartItemData(getString(R.string.cart_discount, bestOffer.type.name().toLowerCase(Locale.US)), discount.euroPrice()))
+            entries.add(CartItemData(getString(R.string.cart_discount, bestOffer.type.name.toLowerCase(Locale.US)), discount.euroPrice()))
             entries.add(CartItemData(getString(R.string.cart_total), (totalAmount - discount).euroPrice()))
         }
         return entries

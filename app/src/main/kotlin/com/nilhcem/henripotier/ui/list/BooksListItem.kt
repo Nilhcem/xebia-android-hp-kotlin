@@ -13,12 +13,8 @@ import com.bumptech.glide.request.target.Target
 import com.nilhcem.henripotier.R
 import com.nilhcem.henripotier.core.extensions.euroPrice
 import com.nilhcem.henripotier.model.Book
-import kotlinx.android.synthetic.books_list_item.view.coverView
-import kotlinx.android.synthetic.books_list_item.view.loadingView
-import kotlinx.android.synthetic.books_list_item.view.titleView
+import kotlinx.android.synthetic.main.books_list_item.view.*
 import org.jetbrains.anko.find
-import org.jetbrains.anko.text
-import org.jetbrains.anko.visibility
 
 class BooksListItem(context: Context) : FrameLayout(context) {
 

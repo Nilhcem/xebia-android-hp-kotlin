@@ -12,7 +12,7 @@ class CartAdapter(val cart: ShoppingCart) : RecyclerView.Adapter<RecyclerView.Vi
 
     var items: ArrayList<CartItemData> = ArrayList()
         set(value) {
-            $items.replaceAll(value)
+            items.replaceAll(value)
             notifyDataSetChanged()
         }
 
@@ -22,5 +22,5 @@ class CartAdapter(val cart: ShoppingCart) : RecyclerView.Adapter<RecyclerView.Vi
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) =
             getView<CartItem>(holder).bindData(items.get(position), position >= cart.getNbItemsInCart())
 
-    override fun getItemCount(): Int = items.size()
+    override fun getItemCount(): Int = items.size
 }

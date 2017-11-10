@@ -14,7 +14,7 @@ class BooksListAdapter(val cart: ShoppingCart, val clickListener: () -> Unit) : 
 
     var items: ArrayList<Book> = ArrayList()
         set(value) {
-            $items.replaceAll(value)
+            items.replaceAll(value)
             notifyDataSetChanged()
         }
 
@@ -35,5 +35,5 @@ class BooksListAdapter(val cart: ShoppingCart, val clickListener: () -> Unit) : 
         }
     }
 
-    override fun getItemCount(): Int = items.size()
+    override fun getItemCount(): Int = items.size
 }
