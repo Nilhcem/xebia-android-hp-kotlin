@@ -13,11 +13,11 @@ import com.nilhcem.henripotier.core.extensions.noNetworkSnackBar
 import com.nilhcem.henripotier.model.Book
 import com.nilhcem.henripotier.network.RestApi
 import com.nilhcem.henripotier.ui.cart.CartActivity
-import kotlinx.android.synthetic.books_list.booksList
-import kotlinx.android.synthetic.books_list.cartActionButton
-import kotlinx.android.synthetic.books_list.parentLayout
-import kotlinx.android.synthetic.books_list.toolbar
+import kotlinx.android.synthetic.main.books_list.*
+import kotlinx.coroutines.experimental.async
+
 import org.jetbrains.anko.*
+import org.jetbrains.anko.custom.async
 import retrofit.RetrofitError
 import java.util.ArrayList
 
@@ -55,7 +55,7 @@ class BooksListActivity : AppCompatActivity(), AnkoLogger {
         val actionBar = getSupportActionBar()
         val nbSelectedItems = cart.getNbItemsInCart()
 
-        actionBar.setTitle(if (nbSelectedItems == 0) {
+        actionBar?.title =(if (nbSelectedItems == 0) {
             getString(R.string.listing_title)
         } else {
             getString(R.string.listing_title_added, nbSelectedItems)

@@ -10,6 +10,6 @@ object RestApi {
 
     init {
         val restAdapter = RestAdapter.Builder().setEndpoint(BuildConfig.WS_ENDPOINT).build()
-        bookStoreApi = restAdapter.create(javaClass<BookStoreApi>())
+        bookStoreApi = restAdapter.create(BookStoreApi::class.java)
     }
 }

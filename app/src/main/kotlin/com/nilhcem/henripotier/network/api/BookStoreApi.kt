@@ -7,9 +7,9 @@ import retrofit.http.Path
 
 interface BookStoreApi {
 
-    GET("/books")
+    @GET("/books")
     fun getBooks(): List<Book>
 
-    GET("/books/{isbn}/commercialOffers")
-    fun getCommercialOffers(Path("isbn") isbn: String): CommercialOffers
+    @GET("/books/{isbn}/commercialOffers")
+    fun getCommercialOffers(@Path("isbn") isbn: String): CommercialOffers
 }

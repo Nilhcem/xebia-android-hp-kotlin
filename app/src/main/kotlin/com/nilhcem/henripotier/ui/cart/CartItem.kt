@@ -5,9 +5,8 @@ import android.view.LayoutInflater
 import android.widget.LinearLayout
 import com.nilhcem.henripotier.R
 import com.nilhcem.henripotier.core.extensions.toBold
-import kotlinx.android.synthetic.cart_item.view.priceView
-import kotlinx.android.synthetic.cart_item.view.titleView
-import org.jetbrains.anko.text
+
+import kotlinx.android.synthetic.main.cart_item.view.*
 
 class CartItem(context: Context) : LinearLayout(context) {
 
@@ -16,8 +15,9 @@ class CartItem(context: Context) : LinearLayout(context) {
     }
 
     fun bindData(data: CartItemData, titleInBold: Boolean) {
-        with (data) {
-            titleView.text = if (titleInBold) title.toBold() else title
+        with(data) {
+            if (titleInBold)
+                titleView.text = title.toBold() else title
             priceView.text = price
         }
     }
